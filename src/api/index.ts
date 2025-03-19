@@ -20,7 +20,7 @@ import { ApiStream } from "./transform/stream"
 import { UnboundHandler } from "./providers/unbound"
 import { RequestyHandler } from "./providers/requesty"
 import { HumanRelayHandler } from "./providers/human-relay"
-import { FakeAIHandler } from "./providers/fake-provider"
+import { FakeAIHandler } from "./providers/fake-ai"
 
 export interface SingleCompletionHandler {
 	completePrompt(prompt: string): Promise<string>
