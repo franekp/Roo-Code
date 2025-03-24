@@ -114,6 +114,7 @@ export type ClineOptions = {
 	rootTask?: Cline
 	parentTask?: Cline
 	taskNumber?: number
+	onCreated?: (cline: Cline) => void
 }
 
 export class Cline extends EventEmitter<ClineEvents> {
@@ -191,6 +192,7 @@ export class Cline extends EventEmitter<ClineEvents> {
 		rootTask,
 		parentTask,
 		taskNumber,
+		onCreated,
 	}: ClineOptions) {
 		super()
 
@@ -233,6 +235,8 @@ export class Cline extends EventEmitter<ClineEvents> {
 			Experiments.isEnabled(experiments ?? {}, EXPERIMENT_IDS.DIFF_STRATEGY),
 			Experiments.isEnabled(experiments ?? {}, EXPERIMENT_IDS.MULTI_SEARCH_AND_REPLACE),
 		)
+
+		onCreated?.(this)
 
 		if (startTask) {
 			if (task || images) {

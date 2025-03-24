@@ -74,7 +74,7 @@ import { getWorkspacePath } from "../../utils/path"
  */
 
 export type ClineProviderEvents = {
-	clineAdded: [cline: Cline]
+	clineCreated: [cline: Cline]
 }
 
 export class ClineProvider extends EventEmitter<ClineProviderEvents> implements vscode.WebviewViewProvider {
@@ -132,8 +132,6 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 
 		// Add this cline instance into the stack that represents the order of all the called tasks.
 		this.clineStack.push(cline)
-
-		this.emit("clineAdded", cline)
 
 		// Ensure getState() resolves correctly.
 		const state = await this.getState()
@@ -485,6 +483,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			rootTask: this.clineStack.length > 0 ? this.clineStack[0] : undefined,
 			parentTask,
 			taskNumber: this.clineStack.length + 1,
+			onCreated: (cline) => this.emit("clineCreated", cline),
 		})
 
 		await this.addClineToStack(cline)
@@ -550,6 +549,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			rootTask: historyItem.rootTask,
 			parentTask: historyItem.parentTask,
 			taskNumber: historyItem.number,
+			onCreated: (cline) => this.emit("clineCreated", cline),
 		})
 
 		await this.addClineToStack(cline)
