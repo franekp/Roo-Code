@@ -146,14 +146,14 @@ export type ClineSay =
 	| "api_req_started"
 	/**
 	 * Roo-Code finished performing an API request. Data from this "say" are moved to "api_req_started" "say"
-	 * and the "api_req_started" "say" is deleted. However cannot find any place where it is said.
+	 * and the "api_req_finished" "say" is deleted. However cannot find any place where it is said.
 	 */
 	| "api_req_finished"
 	/** Roo-Code failed to make an API request, asked the user whether to retry, and now signals the retry */
 	| "api_req_retried"
 	/** Like "api_req_retried", but we hit the rate limit and have to wait for some time before retrying */
 	| "api_req_retry_delayed"
-	/** Roo-Code says: "aggregated api_req metrics from deleted messages" */
+	/** Roo-Code codebase states: "aggregated api_req metrics from deleted messages" */
 	| "api_req_deleted"
 	/** Generic text message said by the user, Roo-Code or LLM */
 	| "text"
