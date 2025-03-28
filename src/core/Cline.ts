@@ -598,6 +598,7 @@ export class Cline extends EventEmitter<ClineEvents> {
 		this.apiConversationHistory = []
 		await this.providerRef.deref()?.postStateToWebview()
 
+		// XXX: should use "task" instead of "text"?
 		await this.say("text", task, images)
 		this.isInitialized = true
 

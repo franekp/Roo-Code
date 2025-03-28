@@ -131,14 +131,9 @@ export type ClineAsk =
 	| "browser_action_launch"
 	/** LLM asks whether it can use MCP server to make an MCP API request */
 	| "use_mcp_server"
-	/**
-	 * This is probably a bug. "finishTask" is a tool that signals that the subtask is completed. User is asked
-	 * to confirm the completion, and then the "control flow" returns to the parent task.
-	 */
-	| "finishTask"
 
 export type ClineSay =
-	/** Probably a bug. Cannot find any place where "task" is used in "say" */
+	/** The initial prompt from the user. Currently "text" variant is used instead of "task" */
 	| "task"
 	/** Roo-Code informs LLM about some mistake (e.g. missing tool arguments) */
 	| "error"
@@ -167,24 +162,16 @@ export type ClineSay =
 	| "user_feedback_diff"
 	/** An output from a terminal command, so LLM knows the command output */
 	| "command_output"
-	/** This is probably a bug. Cannot find any place where "tool" is used in "say" */
-	| "tool"
 	/** Informs the user that the shell integration is unavailable */
 	| "shell_integration_warning"
 	/** LLM says what actions should be taken in the browser (scroll down, click, etc.) */
 	| "browser_action"
 	/** Roo-Code started launching the browser, this say triggers the loading spinner */
 	| "browser_action_result"
-	/** Probably a bug. Cannot find any place where "command" is used in "say" */
-	| "command"
 	/** Roo-Code started making an MCP server request, this say triggers the loading spinner */
 	| "mcp_server_request_started"
 	/** The response from the MCP server */
 	| "mcp_server_response"
-	/** Probably a bug. Cannot find any usage of "new_task_started" in the code */
-	| "new_task_started"
-	/** Probably a bug. This is a tool, not a "say" */
-	| "new_task"
 	/** Roo-Code saved a checkpoint */
 	| "checkpoint_saved"
 	/** Informs the LLM that it does not have access to a file, because it is listed in ".rooignore" */
