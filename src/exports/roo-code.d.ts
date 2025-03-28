@@ -98,7 +98,7 @@ export interface RooCodeAPI extends EventEmitter<RooCodeEvents> {
 export type ClineAsk =
 	/** LLM asks a question that user should respond to	*/
 	| "followup"
-	/** LLM asks for permisson to run terminal command */
+	/** LLM asks for permission to run terminal command */
 	| "command"
 	/** LLM asks for permission to read the terminal command output */
 	| "command_output"
@@ -153,11 +153,11 @@ export type ClineSay =
 	| "api_req_retried"
 	/** Like "api_req_retried", but we hit the rate limit and have to wait for some time before retrying */
 	| "api_req_retry_delayed"
-	/** Roo-Code codebase states: "aggregated api_req metrics from deleted messages" */
+	/** A message representing aggregated api_req metrics from deleted messages */
 	| "api_req_deleted"
 	/** Generic text message said by the user, Roo-Code or LLM */
 	| "text"
-	/** As I understand, some LLMs can talk to themselves and verbose their thougths as "reasoning" */
+	/** Reasoning messages of the LLM */
 	| "reasoning"
 	/** Marks that the task is completed (green checkmark and some text) */
 	| "completion_result"
