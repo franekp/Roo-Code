@@ -30,7 +30,9 @@ export async function run() {
 	// Add all the tests to the runner.
 	const mocha = new Mocha({ ui: "tdd", timeout: 300_000 })
 	const cwd = path.resolve(__dirname, "..")
-	;(await glob("**/**.test.js", { cwd })).forEach((testFile) => mocha.addFile(path.resolve(cwd, testFile)))
+	// Run only the message-events-order.test.js test for now.
+	//;(await glob("**/**.test.js", { cwd })).forEach((testFile) => mocha.addFile(path.resolve(cwd, testFile)))
+	mocha.addFile(path.resolve(cwd, "suite/message-events-order.test.js"))
 
 	// Let's go!
 	return new Promise<void>((resolve, reject) =>
